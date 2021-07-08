@@ -25,3 +25,26 @@ services:   # khai báo các container nằm trong services
 
 # build container bằng docker-compose
 docker-compose up -d
+
+# example
+```yaml
+version: '3.7'
+services:
+  mysql_01:
+    image: mysql:5.7
+    build : .
+#    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-authentication-plugin=mysql_native_password
+    restart: always
+
+    env_file:
+      - .env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - ./volumes/mysql:/var/lib/mysql
+    ports:
+      - '3307:3306'
+```
