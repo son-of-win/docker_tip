@@ -1,0 +1,2 @@
+run docker with share dir
+docker run -it --name linux -v D:\Docker:/home/docker -d kalilinux/kali-rolling
